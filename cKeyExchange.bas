@@ -31,7 +31,31 @@ DIM ocKeyExchangeServer  AS cKeyExchange
 DIM sServerPublicKey     AS STRING
 DIM bResult              AS BOOLEAN
 
-   bResult = ocKeyExchangeClient.GeneratePublicKey(sClientPublicKey)
+   bResult = ocKeyExchangeClient.GetStartUpStatus()
+   
+   If bResult = False Then
+       
+      print "Client cKeyExchange constructor failure"
+      print ocKeyExchangeClient.GetLastResult() 
+      
+   Else
+       
+      bResult = ocKeyExchangeServer.GetStartUpStatus() 
+      
+      If bResult = False Then
+       
+         print "Server cKeyExchange constructor failure"
+         print ocKeyExchangeServer.GetLastResult() 
+         
+     End IF          
+       
+   End If
+   
+   If bResult = True Then
+
+      bResult = ocKeyExchangeClient.GeneratePublicKey(sClientPublicKey)
+      
+   End If
    
    If bResult = True Then
        
