@@ -41,6 +41,7 @@ Type cKeyExchange Extends Object
       DECLARE Constructor
       DECLARE Destructor
       DECLARE FUNCTION GetLastResult() AS DWSTRING
+      DECLARE FUNCTION GetStartUpStatus() AS BOOLEAN
       DECLARE FUNCTION GetSecretKey() AS STRING
       DECLARE FUNCTION GeneratePublicKey(BYREF sPublicKey AS STRING) AS BOOLEAN
       DECLARE FUNCTION GenerateSecretKey(BYREF sPartnerPublicKey AS STRING) AS BOOLEAN
@@ -211,6 +212,16 @@ END FUNCTION
 PRIVATE FUNCTION cKeyExchange.GetSecretKey() AS STRING
 
    RETURN sSecretKey
+
+End Function
+
+' =====================================================================================
+' Get Startup Status
+' =====================================================================================
+
+PRIVATE FUNCTION cKeyExchange.GetStartUpStatus() AS BOOLEAN
+
+   RETURN lStatus = STATUS_SUCCESS
 
 End Function
 
